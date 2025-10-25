@@ -1,0 +1,95 @@
+/* Asegura que las imágenes del carrusel se ajusten correctamente */
+.carousel-item img {
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: auto; /* Mantiene la proporción original */
+  object-fit: cover; /* Asegura que las imágenes cubran el área sin deformarse */
+  object-position: center; /* Centra la imagen en el contenedor */
+}
+
+/* Asegura que el contenedor del carrusel tenga una altura adecuada */
+.carousel-inner {
+  height: 100%;
+  max-height: 500px; /* Ajusta la altura máxima del carrusel */
+  margin-top: 20px; /* Ajusta el espacio entre la imagen y los puntos */
+}
+
+/* Estilo para las flechas de navegación */
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+  background-color: black; /* Color de las flechas para mejor visibilidad */
+}
+
+/* Asegurarse de que los puntos estén fuera de la imagen */
+.carousel-indicators {
+  position: relative;
+  text-align: center;  /* Centra los puntos horizontalmente */
+  margin-top: 10px; /* Ajusta la distancia entre la imagen y los puntos */
+}
+
+/* Estilo de los puntos */
+.carousel-indicators button {
+  width: 10px;  /* Define el tamaño de los puntos */
+  height: 10px;  /* Define el tamaño de los puntos */
+  margin: 0 5px;  /* Añade espacio entre los puntos */
+  background-color: #bbb;  /* Color de los puntos */
+  border-radius: 50%;  /* Hace que los botones sean redondos (puntos) */
+  border: none;  /* Elimina el borde */
+  opacity: 0.6;  /* Hace los puntos ligeramente transparentes */
+}
+
+/* Color del punto activo */
+.carousel-indicators .active {
+  background-color: #333;  /* Cambia el color del punto activo */
+  opacity: 1;  /* El punto activo no tiene transparencia */
+}
+
+/* Contenedor de los banners (pantallas grandes) */
+.banners-container {
+  
+  display: flex;
+  justify-content: center;  /* Centra las imágenes horizontalmente */
+  align-items: center;      /* Centra las imágenes verticalmente */
+  gap: 10px;  /* Espacio entre los banners */
+  margin-top: 40px;  /* Ajusta la distancia con el carrusel */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+}
+
+/* Estilo básico de cada banner */
+.banner {
+  width: 500px;  /* Ancho de cada banner */
+  height: 300px;  /* Altura de cada banner */
+  background-size: cover;  /* Asegura que la imagen cubra todo el banner */
+  background-position: center;  /* Centra la imagen */
+  border-radius: 8px;  /* Bordes redondeados */
+  transition: transform 0.3s ease;  /* Efecto suave para la animación de movimiento */
+  cursor: pointer;  /* Cambia el cursor para indicar que es interactivo */
+}
+
+/* Efecto de movimiento al pasar el mouse */
+.banner:hover {
+  transform: scale(1.05);  /* Aumenta ligeramente el tamaño del banner */
+  cursor: pointer;  /* Cambia el cursor para indicar que es interactivo */
+}
+
+@media (min-width: 768px) {
+  .banner {
+    width: 350px;  /* Ancho de cada banner en pantallas grandes */
+    height: 250px; /* Ajusta la altura en pantallas grandes */
+  }
+}
+  .carousel-indicators {
+    margin-bottom: 10px;  /* Ajusta el espacio debajo de los puntos */
+  }
+
+  /* Centrar el carrusel de los banners en pantallas pequeñas */
+  .carousel-inner {
+    
+    margin-top: 10px; /* Ajusta el espacio entre la imagen y los puntos en pantallas pequeñas */
+  }
+
+  /* Mover los banners hacia abajo en pantallas pequeñas */
+  .d-md-none {
+     display: block; /* Muestra el carrusel de banners en pantallas pequeñas */
+    margin-top: 20px;  /* Mueve el carrusel de banners hacia abajo */
+  }
+

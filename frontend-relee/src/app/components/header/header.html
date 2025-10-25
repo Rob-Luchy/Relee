@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg bg-light px-4 shadow-sm flex-column flex-lg-row">
+  <div class="container-fluid d-flex justify-content-between align-items-center w-100">
+
+     <!-- Logo - Mover a la derecha con ml-auto -->
+      <a class="navbar-brand d-flex align-items-center ml-auto" href="/">
+        <img src="assets/img/LogoRelee.jpeg" alt="Logo Relee" class="logo me-2">
+        <span class="fw-bold text-primary d-none d-sm-inline"> </span>
+      </a>
+
+    <!-- Buscador (visible solo en pantallas grandes) -->
+    <div class="d-none d-lg-flex justify-content-center flex-grow-1 mx-4">
+      <form class="d-flex w-50" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar libros, autores..." aria-label="Buscar">
+        <button class="btn btn-outline-primary" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Iconos -->
+    <div class="d-flex align-items-center gap-3">
+      <!-- Botón Corazón -->
+    <button class="btn btn-outline-danger d-flex align-items-center justify-content-center btn-custom">
+      <i class="bi bi-heart-fill"></i>
+    </button>
+
+    <!-- Botón Iniciar sesión -->
+  <a href="/login" class="btn btn-outline-secondary d-flex align-items-center justify-content-center btn-custom">
+  <i class="bi bi-person-circle fs-5"></i>
+  <span class="ms-2 d-none d-md-inline-block">Hola, inicia sesión</span>
+</a>
+
+
+    </div>
+  </div>
+
+  <!-- Buscador (solo visible debajo en pantallas pequeñas) -->
+  <div class="w-100 mt-2 px-3 d-lg-none">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Buscar libros, autores..." aria-label="Buscar">
+      <button class="btn btn-outline-primary" type="submit">
+        <i class="bi bi-search"></i>
+      </button>
+    </form>
+  </div>
+</nav>

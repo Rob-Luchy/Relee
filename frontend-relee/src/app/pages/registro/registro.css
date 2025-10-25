@@ -1,0 +1,31 @@
+/* Revisa el CSS del .login-container: */
+
+.login-container {
+    /* Si 70vh es demasiado, puedes bajarlo. Por ahora, lo mantenemos como está. */
+    min-height: 70vh; 
+    
+    /* El resto de las reglas aseguran que el formulario siga centrado */
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 20px; 
+    margin: auto; 
+}
+.login-card-column {
+    /* Hemos ajustado el ancho a 700px (o el valor que prefieras) */
+    max-width: 700px; 
+    /* Nota: Tu CSS tenía 'width: 200%;', esto lo corregimos a 'width: 100%;' */
+    width: 100%; 
+}
+/* Si quieres que se ajuste dinámicamente: */
+@media (max-height: 800px) and (min-width: 768px) {
+    .login-container {
+        /* En pantallas más cortas (como laptops pequeñas), sé más flexible */
+        min-height: auto; 
+    }
+}
+a[routerLink] {
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}

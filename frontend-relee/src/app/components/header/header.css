@@ -1,0 +1,91 @@
+.logo {
+  width: 80px;
+  height: auto;
+  border-radius: 8px;
+}
+
+
+
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ffffff !important;
+}
+
+@media (max-width: 992px) {
+  .navbar-brand span {
+    display: none;
+  }
+}
+
+/* Estilo para los botones */
+.btn-custom {
+  height: 40px;  /* Ajusta la altura */
+  padding: 0 10px;  /* Da algo de espacio para que el botón no quede pegado al icono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;  /* Ajusta el tamaño de fuente */
+}
+
+.btn-custom i {
+  font-size: 1.25rem;  /* Ajusta el tamaño del icono */
+}
+
+/* Para pantallas pequeñas: solo el icono */
+@media (max-width: 767px) {
+  .btn-outline-secondary {
+    width: 40px;  /* Ajusta el tamaño del botón en pantallas pequeñas (ancho solo para el icono) */
+    height: 40px;  /* Mantiene la misma altura */
+    padding: 0;  /* Elimina el padding extra */
+  }
+
+  .btn-outline-secondary span {
+    display: none;  /* Oculta el texto en pantallas pequeñas */
+  }
+}
+
+/* Para pantallas grandes: muestra texto e icono */
+@media (min-width: 768px) {
+  .btn-outline-secondary {
+    width: auto;  /* Permite que el botón crezca para adaptarse al texto */
+    padding: 0 20px;  /* Agrega más espacio alrededor del texto */
+  }
+
+  .btn-outline-secondary span {
+    display: inline;  /* Muestra el texto en pantallas grandes */
+  }
+}
+
+/* Asegurarse de que el contenedor de la barra de búsqueda esté centrado */
+.d-none.d-lg-flex {
+  display: flex;
+  justify-content: center;  /* Centra horizontalmente */
+  align-items: center;      /* Centra verticalmente */
+  width: 70%;              /* Asegura que ocupe todo el ancho disponible */
+  height: 100%;             /* Asegura que ocupe toda la altura disponible */
+  position: absolute;       /* Hace que el contenedor se posicione con respecto al contenedor padre */
+  top: 50%;                 /* Centra verticalmente en el contenedor */
+  left: 50%;                /* Centra horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta el elemento para centrarlo completamente */
+}
+
+/* Para pantallas grandes, aseguramos que el cuadro de búsqueda se ajuste */
+.d-flex.w-50 {
+  width: 50%;  /* Puedes ajustar el ancho de la barra de búsqueda */
+}
+
+/* En pantallas pequeñas, el cuadro de búsqueda ya debería estar centrado, así que no necesitamos más ajustes */
+@media (max-width: 767px) {
+  .d-none.d-lg-flex {
+    display: none;  /* Ocultamos este bloque en pantallas pequeñas */
+  }
+}
+
+a[routerLink] {
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}

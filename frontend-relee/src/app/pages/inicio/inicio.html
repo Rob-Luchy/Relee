@@ -1,0 +1,93 @@
+<!-- Carrusel de imágenes -->
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-inner">
+    <!-- Primera imagen, con la clase 'active' -->
+    <div class="carousel-item active">
+      <picture>
+        <source media="(min-width: 768px)" srcset="assets/img/imagen1.1.jpg">
+        <source media="(max-width: 767px)" srcset="assets/img/imagen1.jpg">
+        <img src="assets/img/imagen-grande.jpg" class="d-block w-100" alt="Imagen 1">
+      </picture>
+    </div>
+
+    <!-- Segunda imagen -->
+    <div class="carousel-item">
+      <picture>
+        <source media="(min-width: 768px)" srcset="assets/img/imagen2.1.jpg">
+        <source media="(max-width: 767px)" srcset="assets/img/imagen2.jpg">
+        <img src="assets/img/imagen-grande2.jpg" class="d-block w-100" alt="Imagen 2">
+      </picture>
+    </div>
+
+    <!-- Tercera imagen -->
+    <div class="carousel-item">
+      <picture>
+        <source media="(min-width: 768px)" srcset="assets/img/imagen3.1.jpg">
+        <source media="(max-width: 767px)" srcset="assets/img/imagen3.jpg">
+        <img src="assets/img/imagen-grande3.jpg" class="d-block w-100" alt="Imagen 3">
+      </picture>
+    </div>
+  </div>
+
+  <!-- Controles de navegación -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+
+  <!-- Indicadores de puntos -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+</div>
+
+<!-- Sección de los 3 banners, que se convierte en carrusel en pantallas pequeñas -->
+<div class="d-none d-md-flex banners-container justify-content-center gap-3 mt-4">
+  <!-- Banner 1 -->
+  <div class="banner" style="background-image: url('assets/img/baner1.jpg');">
+  </div>
+
+  <!-- Banner 2 -->
+  <div class="banner" style="background-image: url('assets/img/baner2.jpg');">
+  </div>
+
+  <!-- Banner 3 -->
+  <div class="banner" style="background-image: url('assets/img/baner3.jpg');">
+  </div>
+</div>
+
+<!-- Carrusel de banners para pantallas pequeñas -->
+<div id="bannersCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <!-- Banner 1 -->
+    <div class="carousel-item active">
+      <div class="banner" style="background-image: url('assets/img/baner1.jpg');"></div>
+    </div>
+    <!-- Banner 2 -->
+    <div class="carousel-item">
+      <div class="banner" style="background-image: url('assets/img/baner2.jpg');"></div>
+    </div>
+    <!-- Banner 3 -->
+    <div class="carousel-item">
+      <div class="banner" style="background-image: url('assets/img/baner3.jpg');"></div>
+    </div>
+  </div>
+
+  <!-- Controles del carrusel -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#bannersCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#bannersCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<app-book-carousel> </app-book-carousel>

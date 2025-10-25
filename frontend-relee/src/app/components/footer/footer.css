@@ -1,0 +1,184 @@
+/* =======================================
+   ESTILOS PARA LA SECCIÓN DE SUSCRIPCIÓN
+   ======================================= */
+/* 1. Centrar el formulario y limitar su ancho */
+
+
+#suscripcion {
+    /* 💡 AÑADIDO: Limita el ancho de la sección y la centra para que la línea se reduzca */
+    max-width: 1120px; /* Usa el mismo ancho del carrusel/fila de servicios */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* LÍNEA DIVISORIA ANTES DE LA SECCIÓN */
+    border-top: 2px solid #007bff;
+    padding-top: 30px; 
+    margin-top: 40px; 
+}
+
+/* ⚠️ Nota: En móviles, es posible que quieras que #suscripcion vuelva a tener max-width: 100% 
+   para que no se vea una línea muy pequeña en pantallas chicas. */
+@media (max-width: 575.98px) {
+    #suscripcion {
+        max-width: 100%;
+        /* Asegura que el contenido interno tenga un poco de margen para no tocar los bordes */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+#suscripcion form {
+    /* Limita el ancho del formulario (ajusta este valor si lo necesitas) */
+    max-width: 400px;
+    /* Centra el formulario dentro de su contenedor */
+    margin-left: auto;
+    margin-right: auto;
+    /* Hace que el formulario sea flexible para alinear input y botón */
+    display: flex;
+    margin-bottom: 20px; /* Espacio antes de los servicios */
+    
+}
+
+#suscripcion input[type="email"] {
+    /* Permite que el input crezca y ocupe el espacio principal */
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; /* Bordes redondeados solo a la izquierda */
+    font-size: 1rem;
+}
+
+#suscripcion button[type="submit"] {
+    /* Estilo del botón */
+    background-color: #ffc107; /* Amarillo de Bootstrap 'warning' */
+    color: black;
+    border: 1px solid #ffc107;
+    border-radius: 0 5px 5px 0; /* Bordes redondeados solo a la derecha */
+    padding: 10px 15px;
+    white-space: nowrap; /* Evita que el texto del botón se rompa */
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 2. Reducir el contenedor de los servicios */
+.row.text-center.mt-4 {
+    /* Limita el ancho del contenedor de la fila de servicios */
+    max-width: 1000px; /* Ajusta este valor si necesitas que sea más pequeño */
+    margin-left: auto; /* Centrar la fila de servicios */
+    margin-right: auto; /* Centrar la fila de servicios */
+}
+
+
+/* =======================================
+   ESTILOS DE LAS TARJETAS DE SERVICIOS
+   ======================================= */
+.service-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px solid #007bff;
+    
+    /* Propiedades de ancho responsivo (de la respuesta anterior) */
+    width: 100%;       /* Ocupa el 100% del contenedor en pantallas pequeñas */
+    max-width: 350px;  /* Limita el tamaño a 350px en pantallas grandes */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* CLAVE para que se adapte al texto */
+    height: 190px; /* Permite que la altura crezca o se encoja automáticamente */
+    min-height: 150px; /* Opcional: asegura una altura mínima si el contenido es escaso */
+}
+
+.service-card:hover {
+    /* Mantiene la posición (no hay transform: scale o translateY) */
+    
+    /* 1. Sombra de color para el efecto "Glow" */
+    /* 007bff es tu color azul principal */
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.6); 
+    
+    /* 2. Borde sutilmente más grueso o brillante */
+    border-color: #0056b3; 
+}
+
+.service-card i {
+    font-size: 2rem;
+    color: #007bff;
+}
+
+.service-card h5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+
+/* =======================================
+   ESTILOS DEL PIE DE PÁGINA (FOOTER)
+   ======================================= */
+.footer {
+    background-color: #343a40; /* Fondo oscuro */
+    color: white;
+    padding: 40px 0;
+}
+
+.footer h5 {
+    font-size: 1.25rem;
+    margin-bottom: 15px; /* Añade más espacio bajo el título */
+    color: #ffc107; /* 💡 Color amarillo para los títulos del footer */
+    border-bottom: 1px solid #495057; /* 💡 Separador sutil bajo el título */
+    padding-bottom: 5px;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.footer ul li {
+    margin: 8px 0; /* Más espacio entre los elementos de la lista */
+}
+
+.footer ul li a {
+    color: #dee2e6; /* 💡 Color más claro para los enlaces para contraste */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+    color: #ffc107; /* Resaltado al pasar el mouse */
+    text-decoration: none;
+}
+
+/* Estilo para el formulario de suscripción del footer */
+.footer .input-group {
+    margin-top: 10px;
+}
+
+.footer .form-control {
+    border-color: #ffc107; /* Borde del input en color de acento */
+}
+
+.footer .btn-warning {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+}
+
+.footer .btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.footer p {
+    font-size: 0.875rem;
+    color: #adb5bd; /* 💡 Gris claro para derechos de autor */
+}
+

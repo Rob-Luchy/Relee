@@ -1,0 +1,100 @@
+/* =======================================
+   REGLAS GENERALES Y CENTRADO (ESCRITORIO)
+   ======================================= */
+
+.login-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: auto; 
+}
+/* Limitar el ancho de la tarjeta para escritorios/tabletas */
+.login-card-column {
+    max-width: 700px; 
+    /* Nota: Tu CSS tenía 'width: 200%;', esto lo corregimos a 'width: 100%;' */
+    width: 100%; 
+}
+
+.login-card {
+    border: none;
+    border-radius: 12px;
+}
+
+.login-card .card-title {
+    color: #007bff; 
+    font-weight: 700;
+}
+
+/* =======================================
+   MEDIA QUERY PARA MÓVILES (sm/xs)
+   ======================================= */
+@media (max-width: 575.98px) {
+    
+    .login-container {
+        /* En móvil, eliminamos el centrado vertical estricto (100vh) */
+        /* y dejamos que el contenido fluya verticalmente. */
+        min-height: auto; 
+        padding-top: 40px;
+        padding-bottom: 40px;
+        display: block; /* Desactiva flexbox para un flujo normal */
+    }
+
+    /* La tarjeta debe usar el ancho completo de la columna en móvil */
+    .login-card-column {
+        max-width: 100%; 
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Reducimos el padding de la tarjeta en móvil */
+    .login-card .card-body {
+        padding: 1.5rem !important; /* 1.5rem es más pequeño que el p-4 de Bootstrap */
+    }
+
+    .login-card-column > p {
+        font-size: 0.9rem; /* Fuente un poco más pequeña para el enlace de registro */
+    }
+}
+
+/* =======================================
+   REGLAS PARA ESCALAR CONTENIDO (Pantallas Grandes: > 992px)
+   ======================================= */
+@media (min-width: 992px) {
+    
+    /* 1. Ajuste del Padding General de la Tarjeta */
+    .login-card .card-body {
+        /* Aumentamos el padding para que la tarjeta sea más gruesa por dentro */
+        padding: 4rem !important; /* Aumentado de p-4 (1.5rem) a 4rem */
+    }
+
+    /* 2. Escalar Títulos */
+    .login-card .card-title {
+        font-size: 2.5rem; /* Título más grande */
+        margin-bottom: 2rem !important;
+    }
+    
+    /* 3. Escalar Campos de Formulario y Botones */
+    .form-label {
+        font-size: 1.1rem; /* Etiquetas de campo más grandes */
+    }
+    
+    .form-control {
+        font-size: 1.1rem; /* Texto dentro del campo más grande */
+        padding: 0.75rem 1rem; /* Aumentamos el padding para que los campos sean más altos */
+    }
+
+    .btn-primary {
+        font-size: 1.25rem; /* Botón de 'Entrar' más grande */
+        padding: 0.75rem 1rem !important;
+    }
+
+    /* 4. Enlace de Registro (pie de página) */
+.login-card-column > p {
+    font-size: 1.1rem; 
+    margin-top: 10px;
+    /* CLAVE: Añadir margin-bottom: 0 para eliminar el margen inferior */
+    margin-bottom: 0; 
+}
+} 

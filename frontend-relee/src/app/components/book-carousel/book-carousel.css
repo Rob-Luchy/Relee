@@ -1,0 +1,175 @@
+/* =======================================
+   REGLAS GENERALES (DESKTOP) - AJUSTES
+   ======================================= */
+
+/* Mantenemos las reglas del título y carrusel */
+#libros-disponibles {
+    max-width: 1090px; 
+    margin: 20px auto 20px auto;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+#exchangeBooksCarousel {
+    max-width: 1120px;
+    margin: auto;
+    position: relative; 
+    padding: 20px 0; 
+}
+
+/* ⚠️ SOLUCIÓN CLAVE AQUÍ: Las flechas SÓLO se desplazan -90px en ESCRITORIO */
+@media (min-width: 992px) { /* Usamos 992px (lg) para un ancho de escritorio seguro */
+    /* Flechas fuera del contenedor */
+    .carousel-control-prev { left: -90px; }
+    .carousel-control-next { right: -90px; }
+}
+
+/* El estilo del ícono (tamaño y color) se aplica a todas las pantallas */
+
+/* Flecha PREVIA (Izquierda) */
+.carousel-control-prev-icon {
+    /* CLAVE: fill='%23000' para color negro */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+    width: 40px; 
+    height: 40px; 
+}
+
+/* Flecha SIGUIENTE (Derecha) */
+.carousel-control-next-icon {
+    /* CLAVE: fill='%23000' para color negro */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    width: 40px; 
+    height: 40px;
+}
+
+
+/* =======================================
+   TARJETAS DE LIBROS (ESTILO Y ALINEACIÓN)
+   ======================================= */
+
+/* 1. Contenedor principal para mantener la sombra, el hover y la apariencia */
+.book-item-container {
+    width: 100%; 
+    height: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    margin: 10px 0; 
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-item-container:hover {
+    transform: translateY(-5px); /* Se levanta un poco */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 2. Contenedor de la imagen (CLAVE para la proporción responsiva) */
+.book-card {
+    width: 100%;
+    padding-top: 133.33%; 
+    position: relative;
+    overflow: hidden;
+    height: 0; 
+    flex-shrink: 0;
+}
+
+.book-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+}
+
+/* 3. Información del libro (Debajo de la imagen) */
+.book-info {
+    min-height: 80px; 
+    max-height: 80px; 
+    flex-grow: 0; 
+    flex-shrink: 0; 
+
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 10px 15px 5px 15px; 
+    text-align: center;
+    overflow: hidden; 
+}
+
+.book-info h5 {
+    margin: 5px;
+    font-size: 1.1rem;
+    color: #007bff;
+    line-height: 1.2;
+}
+
+.book-info p {
+    margin: 5px 0 0 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* 4. Botón "Ver Detalle" */
+.exchange-btn {
+    flex-shrink: 0;
+    display: block; 
+    width: 100%; 
+    margin: 0;
+    
+    background-color: #ffc107; 
+    color: black;
+    border: none;
+    padding: 8px 0; 
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+
+    opacity: 0;
+    height: 0; 
+    visibility: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease, padding 0.3s ease;
+}
+
+/* Mostrar el botón al hacer hover en el contenedor padre */
+.book-item-container:hover .exchange-btn {
+    opacity: 1;
+    height: 38px; 
+    padding: 8px 0; 
+    visibility: visible;
+}
+
+
+/* =======================================
+   MEDIA QUERY PARA MÓVILES (sm/xs)
+   ======================================= */
+@media (max-width: 575.98px) {
+    /* Ajustes de contenedores */
+    #exchangeBooksCarousel { max-width: 100%; padding: 10px 0; }
+    
+    /* ⚠️ Se eliminan las reglas de desplazamiento aquí, por lo que vuelven a 0 (por defecto) */
+    /* .carousel-control-prev, .carousel-control-next { left: 0; right: 0; } <-- Esto ya no es necesario */
+    
+    .book-item-container {
+        width: 100%;
+        margin: 5px auto;
+    }
+
+    /* Adaptar la proporción de la imagen para móviles (ej: 2:3) */
+    .book-card {
+        padding-top: 150%; 
+    }
+    
+    /* Ajustes de fuente en móvil */
+    .book-info h5 { font-size: 1rem; }
+    .book-info p { font-size: 0.8rem; }
+
+    /* Ajuste de altura del botón para móvil */
+    .book-item-container:hover .exchange-btn {
+        height: 35px; 
+        padding: 6px 0; 
+    }
+}
