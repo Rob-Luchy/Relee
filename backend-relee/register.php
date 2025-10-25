@@ -34,3 +34,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode(["status" => "error", "message" => "Método no permitido"]);
 }
 ?>
+<!-- Prueba de commit -->
