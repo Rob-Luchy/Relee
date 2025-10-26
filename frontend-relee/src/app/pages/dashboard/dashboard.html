@@ -1,1 +1,77 @@
-<p>dashboard works!</p>
+<div class="container dashboard-container py-4">
+  <div class="row g-4">
+    <!-- 🧍 Panel lateral -->
+    <div class="col-md-3">
+      <div class="card shadow-sm sidebar text-center p-3">
+        <img src= 'assets/img/user.png' alt="Usuario" class="user-img mb-3">
+        <h5 class="fw-bold mb-1">¡Hola, {{ usuario.nombre }}!</h5>
+        <p class="text-muted small mb-3">Miembro desde {{ usuario.fechaRegistro }}</p>
+
+        <button class="btn btn-outline-primary w-100 mb-2">
+          <i class="bi bi-pencil-square me-2"></i> Editar perfil
+        </button>
+       <button class="btn btn-outline-danger flex-fill" (click)="cerrarSesion()">
+  <i class="bi bi-box-arrow-right me-2"></i> Cerrar sesión
+</button>
+
+      </div>
+    </div>
+
+    <!-- 🏠 Contenido principal -->
+    <div class="col-md-9">
+      <!-- 👋 Bienvenida -->
+      <div class="card shadow-sm p-4 mb-4">
+        <h4 class="fw-bold text-primary mb-2">Bienvenido a tu biblioteca personal</h4>
+        <p class="text-muted mb-0">Aquí puedes ver tus libros, tus intercambios y tus notificaciones.</p>
+      </div>
+
+      <!-- 📚 Sección de libros -->
+      <div class="card shadow-sm p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">📚 Mis Libros</h5>
+          <button class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-circle me-1"></i> Agregar nuevo
+          </button>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-sm-6 col-lg-4" *ngFor="let libro of libros">
+            <div class="card h-100 text-center p-3">
+              <img src="{{ libro.imagen }}" alt="{{ libro.titulo }}" class="book-cover mb-3">
+              <h6 class="fw-bold">{{ libro.titulo }}</h6>
+              <p class="text-muted small">{{ libro.autor }}</p>
+              <button class="btn btn-outline-primary btn-sm w-100">Ver detalles</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📨 Notificaciones -->
+      <div class="card shadow-sm p-4 mb-4">
+        <h5 class="fw-bold mb-3">🔔 Notificaciones</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" *ngFor="let noti of notificaciones">
+            <i class="bi bi-info-circle text-primary me-2"></i>
+            {{ noti }}
+          </li>
+        </ul>
+      </div>
+
+      <!-- ⚙️ Acceso rápido -->
+      <div class="card shadow-sm p-4">
+        <h5 class="fw-bold mb-3">⚙️ Acceso rápido</h5>
+        <div class="d-flex flex-wrap gap-3">
+          <button class="btn btn-outline-primary flex-fill">
+            <i class="bi bi-book me-2"></i> Ver libros disponibles
+          </button>
+          <button class="btn btn-outline-success flex-fill">
+            <i class="bi bi-arrow-repeat me-2"></i> Intercambios activos
+          </button>
+          <button class="btn btn-outline-warning flex-fill">
+            <i class="bi bi-heart me-2"></i> Favoritos
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

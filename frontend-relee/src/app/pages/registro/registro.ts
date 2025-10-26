@@ -70,6 +70,13 @@ onSubmit() {
 
       if (isSuccess) {
         alert(message || 'Usuario registrado correctamente');
+
+          // ✅ Guardamos el nombre en localStorage
+           localStorage.setItem('usuario_nombre', datos.nombre_completo);
+            this.registroForm.reset();
+           this.router.navigate(['/dashboard']);
+
+        
         this.registroForm.reset();
         // ✅ Redirigir al dashboard después del registro exitoso
         this.router.navigate(['/dashboard']);

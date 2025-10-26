@@ -33,13 +33,21 @@ export class Login {
       next: (res: any) => {
         console.log('Respuesta del servidor:', res);
 
-        if (res.status === 'success') {
-          alert('Inicio de sesión exitoso');
-          localStorage.setItem('usuario', JSON.stringify(res.user)); // Guardar usuario en el navegador
-          this.router.navigate(['/dashboard']); // Redirigir al dashboard
-        } else {
-          alert(res.message || 'Credenciales incorrectas');
-        }
+      if (res.status === 'success') {
+  // 🔥 Notifica al servicio Auth del nombre del usuario
+  if (res.user?.nombre_completo) {
+    this.auth.guardarUsuario(res.user.nombre_completo);
+  }
+
+  // Guarda también en localStorage (por si recarga la página)
+  localStorage.setItem('usuario', JSON.stringify(res.user));
+
+  alert(`¡Bienvenido, ${res.user?.nombre_completo || 'usuario'}!`);
+  this.router.navigate(['/dashboard']); // Redirigir al dashboard
+} else {
+  alert(res.message || 'Credenciales incorrectas');
+}
+
       },
       error: (err) => {
         console.error('Error en el login:', err);
