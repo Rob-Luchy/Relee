@@ -1,20 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; // ✅ <--- aquí está la corrección
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Auth {
-  private apiUrl = 'http://relee.local/register.php';
+  private baseUrl = 'http://relee.local/';
+private apiRegister = this.baseUrl + 'register.php';
+private apiLogin = this.baseUrl + 'login.php';
+
 
   constructor(private http: HttpClient) {}
 
+  // ✅ Registro
   registrarUsuario(datos: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.apiRegister, datos, { headers });
+  }
 
-    return this.http.post<any>(this.apiUrl, datos, { headers });
+  // ✅ Login
+  loginUsuario(datos: any): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.apiLogin, datos, { headers });
   }
 }
