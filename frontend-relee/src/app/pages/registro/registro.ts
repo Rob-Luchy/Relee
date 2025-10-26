@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Auth } from '../../services/auth';
+import { Router } from '@angular/router'; // 👈 Importa el router
 
 @Component({
   selector: 'app-registro',
@@ -14,14 +15,19 @@ export class Registro {
   registroForm: FormGroup;
   mensaje: string = ''; // 👈 agrega esta línea
 
-  constructor(private fb: FormBuilder, private auth: Auth) {
-    this.registroForm = this.fb.group({
-      nombre_completo: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmar_password: ['', Validators.required]
-    });
-  }
+constructor(
+  private fb: FormBuilder,
+  private auth: Auth,
+  private router: Router // 👈 aquí lo agregas
+) {
+  this.registroForm = this.fb.group({
+    nombre_completo: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmar_password: ['', Validators.required]
+  });
+}
+
 
 onSubmit() {
   if (!this.registroForm.valid) {
@@ -65,6 +71,10 @@ onSubmit() {
       if (isSuccess) {
         alert(message || 'Usuario registrado correctamente');
         this.registroForm.reset();
+        // ✅ Redirigir al dashboard después del registro exitoso
+        this.router.navigate(['/dashboard']);
+
+
       } else {
         alert(message || 'Hubo un problema al registrar el usuario.');
       }
