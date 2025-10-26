@@ -24,8 +24,3 @@
         min-height: auto; 
     }
 }
-a[routerLink] {
-  cursor: pointer;
-  position: relative;
-  z-index: 10;
-}
