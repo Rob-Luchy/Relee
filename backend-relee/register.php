@@ -1,15 +1,26 @@
 <?php
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: Content-Type');
-header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
 
 require_once 'config.php';
 
+// Si el navegador hace una solicitud OPTIONS (preflight CORS), responder sin error
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input = json_decode(file_get_contents("php://input"), true);
-    file_put_contents("debug.log", print_r($input, true)); // 👈 para ver si llegan datos
 
-    if (!isset($input['nombre_completo']) || !isset($input['email']) || !isset($input['password'])) {
+    if (!$input) {
+        echo json_encode(["status" => "error", "message" => "No se recibieron datos"]);
+        exit;
+    }
+
+    if (empty($input['nombre_completo']) || empty($input['email']) || empty($input['password'])) {
         echo json_encode(["status" => "error", "message" => "Faltan datos"]);
         exit;
     }
@@ -34,4 +45,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode(["status" => "error", "message" => "Método no permitido"]);
 }
 ?>
-<!-- Prueba de commit -->

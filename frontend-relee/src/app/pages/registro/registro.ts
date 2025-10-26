@@ -23,23 +23,60 @@ export class Registro {
     });
   }
 
-  onSubmit() {
-    if (this.registroForm.valid) {
-      const datos = this.registroForm.value;
-
-      this.auth.registrarUsuario(datos).subscribe({
-        next: (response) => {
-          console.log('Respuesta del servidor:', response);
-          alert(response.message || 'Registro exitoso');
-          this.registroForm.reset();
-        },
-        error: (err) => {
-          console.error('Error en el registro:', err);
-          alert('Hubo un problema al registrar el usuario.');
-        }
-      });
-    } else {
-      alert('Por favor completa todos los campos correctamente.');
-    }
+onSubmit() {
+  if (!this.registroForm.valid) {
+    alert('Por favor completa todos los campos correctamente.');
+    return;
   }
+
+  const datos = this.registroForm.value;
+
+  this.auth.registrarUsuario(datos).subscribe({
+    next: (res: any) => {
+      console.log('Respuesta del servidor (raw):', res);
+
+      // Normalizar la respuesta: si viene como string, intentar parsear
+      let data: any;
+      if (typeof res === 'string') {
+        try {
+          data = JSON.parse(res);
+        } catch (e) {
+          // respuesta no JSON, convertir en un objeto genérico
+          data = { status: 'error', message: res };
+        }
+      } else {
+        data = res;
+      }
+
+      console.log('Respuesta del servidor (normalizada):', data);
+
+      // Comprobaciones tolerantes para considerar éxito
+      const status = (data && data.status) ?? data?.success ?? data?.ok ?? data?.statusCode;
+      const message = (data && data.message) ?? data?.msg ?? data?.error ?? 'Respuesta inesperada del servidor';
+
+      const isSuccess =
+        status === 'success' ||
+        status === 'ok' ||
+        status === 'SUCCESS' ||
+        status === true ||
+        status === 1 ||
+        status === 200; // algunos APIs usan códigos numéricos
+
+      if (isSuccess) {
+        alert(message || 'Usuario registrado correctamente');
+        this.registroForm.reset();
+      } else {
+        alert(message || 'Hubo un problema al registrar el usuario.');
+      }
+    },
+    error: (err) => {
+      console.error('Error en el registro (HTTP):', err);
+      // Si el backend devuelve JSON de error en err.error, intentamos mostrarlo:
+      const serverMsg = err?.error?.message || err?.message || 'Hubo un problema al registrar el usuario.';
+      alert(serverMsg);
+    }
+  });
+}
+
+
 }
