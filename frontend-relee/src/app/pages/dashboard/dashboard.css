@@ -67,3 +67,11 @@
 .btn-outline-warning:hover i.bi-heart {
   color: #fff !important;
 }
+
+
+.book-cover {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+}

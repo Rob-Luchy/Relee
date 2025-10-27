@@ -15,4 +15,6 @@ if ($link === false) {
 
 // Codificación UTF-8
 mysqli_set_charset($link, "utf8mb4");
+// Test de cambio para probar git status
+
 ?>
