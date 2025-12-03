@@ -8,26 +8,29 @@
           <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
 
           <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
             <div class="mb-3">
-              <label for="email" class="form-label">Correo Electrónico</label>
+              <label for="loginEmail" class="form-label">Correo Electrónico</label>
               <input
                 type="email"
                 class="form-control"
-                id="email"
+                id="loginEmail"
                 placeholder="tu@ejemplo.com"
                 formControlName="email"
+                autocomplete="email"
                 required
               />
             </div>
 
             <div class="mb-3">
-              <label for="password" class="form-label">Contraseña</label>
+              <label for="loginPassword" class="form-label">Contraseña</label>
               <input
                 type="password"
                 class="form-control"
-                id="password"
+                id="loginPassword"
                 placeholder="Mínimo 8 caracteres"
                 formControlName="password"
+                autocomplete="current-password"
                 required
               />
             </div>
@@ -39,6 +42,7 @@
                   Recordarme
                 </label>
               </div>
+
               <a routerLink="/recuperar-password" class="text-decoration-none">
                 ¿Olvidaste tu contraseña?
               </a>
@@ -47,19 +51,16 @@
             <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
               Entrar
             </button>
-            
+
           </form>
         </div>
-        
       </div>
 
       <p class="text-center mt-3">
         ¿Aún no tienes cuenta?
-       <a href="/registro" class="text-decoration-none fw-bold">Regístrate aquí</a>
-
+        <a href="/registro" class="text-decoration-none fw-bold">Regístrate aquí</a>
       </p>
 
-      
     </div>
   </div>
 </div>

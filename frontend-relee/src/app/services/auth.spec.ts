@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private apiUrl = 'http://localhost/backend-relee'; // ruta del backend PHP
+  private apiUrl = 'http://relee.local/backend-relee/'; // ruta del backend PHP
 
   constructor(private http: HttpClient) {}
 

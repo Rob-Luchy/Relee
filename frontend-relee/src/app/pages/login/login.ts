@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -28,6 +29,9 @@ export class Login {
     }
 
     const datos = this.loginForm.value;
+
+    console.log("📤 Datos enviados al backend:", datos);
+
 
     this.auth.loginUsuario(datos).subscribe({
       next: (res: any) => {

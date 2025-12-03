@@ -6,26 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LibrosService {
-  private apiUrl = 'http://relee.local/libros.php'; // ✅ Cambia si tu dominio o ruta es diferente
+
+  private apiUrl = 'http://localhost/backend-relee/libros.php';
 
   constructor(private http: HttpClient) {}
 
-  // 🔹 Registrar un nuevo libro
   registrarLibro(libro: any): Observable<any> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post<any>(this.apiUrl, libro, { headers });
   }
 
-  // 🔹 Obtener libros (por usuario o todos)
   obtenerLibros(idUsuario?: number): Observable<any> {
     let url = this.apiUrl;
-    if (idUsuario) {
-      url += `?usuario=${idUsuario}`;
-    }
+    if (idUsuario) url += `?usuario=${idUsuario}`;
     return this.http.get<any>(url);
   }
 
-  // 🔹 (Opcional) Eliminar libro
   eliminarLibro(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}?id=${id}`);
   }

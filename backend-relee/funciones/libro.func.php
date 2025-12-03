@@ -33,5 +33,6 @@ function registrarLibro($id_usuario, $titulo, $autor, $descripcion, $id_categori
         return ["status" => "success", "message" => "Libro registrado"];
     }
 
-    return ["status" => "error", "message" => "Error al registrar libro"];
+   return ["status" => "error", "message" => mysqli_error($link)];
+
 }

@@ -35,9 +35,16 @@ onSubmit() {
     return;
   }
 
+  console.log("=== DEBUG REGISTRO ===");
+  console.log("Formulario válido:", this.registroForm.valid);
+  console.log("Valores del formulario:", this.registroForm.value);
+
   const datos = this.registroForm.value;
 
+
   this.auth.registrarUsuario(datos).subscribe({
+
+    
     next: (res: any) => {
       console.log('Respuesta del servidor (raw):', res);
 

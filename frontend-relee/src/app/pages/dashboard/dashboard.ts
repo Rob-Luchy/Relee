@@ -20,9 +20,7 @@ interface Categoria {
 export class Dashboard implements OnInit {
   usuario = { nombre: 'Usuario', fechaRegistro: 'Octubre 2025' };
 
-  // ✅ Declaramos correctamente
   categorias: Categoria[] = [];
-
   libros: any[] = [];
   notificaciones = [
     'Tu libro "1984" fue solicitado para intercambio.',
@@ -31,10 +29,10 @@ export class Dashboard implements OnInit {
   ];
 
   mostrarFormulario = false;
-    // ✅ NUEVO: fotos reales
   fotosReales: string[] = [];
   nuevaFoto: string = '';
 
+  // 🔥 CORREGIDO: id_categoria ya no inicia en 0
   nuevoLibro = {
     id_usuario: 0,
     titulo: '',
@@ -42,7 +40,7 @@ export class Dashboard implements OnInit {
     descripcion: '',
     imagen_portada: '',
     estado: 'Usado',
-    id_categoria: 0, // 👈 importante
+    id_categoria: null,
   };
 
   constructor(
@@ -62,14 +60,15 @@ export class Dashboard implements OnInit {
     this.cargarLibros();
   }
 
+  // 🔥 CORREGIDO: Ahora usa localhost
   cargarCategorias() {
-    fetch('http://relee.local/categorias.php')
+    fetch('http://localhost/backend-relee/categorias.php')
       .then((r) => r.json())
       .then((data) => {
         if (data.status === 'success') {
-          this.categorias = data.data; // ✅ Ya existe la propiedad
+          this.categorias = data.data;
         } else {
-          console.warn(data.message || 'No se pudieron cargar categorías');
+          console.warn(data.message);
         }
       })
       .catch((err) => console.error('Error al cargar categorías:', err));
@@ -79,6 +78,7 @@ export class Dashboard implements OnInit {
     this.librosService.obtenerLibros(this.nuevoLibro.id_usuario).subscribe({
       next: (res) => {
         if (res.status === 'success') this.libros = res.data;
+        else console.warn(res.message);
       },
       error: (err) => console.error('Error al cargar libros:', err),
     });
@@ -101,6 +101,7 @@ export class Dashboard implements OnInit {
           this.mostrarFormulario = false;
           this.cargarLibros();
 
+          // Reiniciar formulario
           this.nuevoLibro = {
             id_usuario: this.nuevoLibro.id_usuario,
             titulo: '',
@@ -108,39 +109,39 @@ export class Dashboard implements OnInit {
             descripcion: '',
             imagen_portada: '',
             estado: 'Usado',
-            id_categoria: 0,
+            id_categoria: null,
           };
         } else {
-          alert(res.message || 'Error al registrar el libro.');
+          alert(res.message || 'Error al registrar libro.');
         }
       },
       error: (err) => console.error('Error al registrar libro:', err),
     });
   }
-// --- nueva función para guardar las fotos ---
-onFileSelected(event: any) {
-  const archivos: FileList = event.target.files;
-  if (!archivos || archivos.length === 0) return;
 
-  Array.from(archivos).forEach((archivo) => {
-    const formData = new FormData();
-    formData.append('foto', archivo);
+  onFileSelected(event: any) {
+    const archivos: FileList = event.target.files;
+    if (!archivos || archivos.length === 0) return;
 
-    fetch('http://relee.local/backend-relee/subir_foto.php', {
-      method: 'POST',
-      body: formData
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === 'success') {
-          this.fotosReales.push(data.ruta); // guarda la URL devuelta
-        } else {
-          alert('Error al subir una imagen: ' + data.message);
-        }
+    Array.from(archivos).forEach((archivo) => {
+      const formData = new FormData();
+      formData.append('foto', archivo);
+
+      fetch('http://localhost/backend-relee/subir_foto.php', {
+        method: 'POST',
+        body: formData,
       })
-      .catch((err) => console.error('Error al subir imagen:', err));
-  });
-}
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === 'success') {
+            this.fotosReales.push(data.ruta);
+          } else {
+            alert('Error al subir imagen: ' + data.message);
+          }
+        })
+        .catch((err) => console.error('Error al subir imagen:', err));
+    });
+  }
 
   cerrarSesion() {
     localStorage.removeItem('usuario_nombre');
@@ -148,14 +149,14 @@ onFileSelected(event: any) {
     alert('Sesión cerrada correctamente');
     this.router.navigate(['/login']);
   }
+
   agregarFoto() {
-  if (!this.nuevaFoto.trim()) {
-    alert('Por favor ingresa una URL válida.');
-    return;
+    if (!this.nuevaFoto.trim()) {
+      alert('Por favor ingresa una URL válida.');
+      return;
+    }
+
+    this.fotosReales.push(this.nuevaFoto.trim());
+    this.nuevaFoto = '';
   }
-
-  this.fotosReales.push(this.nuevaFoto.trim());
-  this.nuevaFoto = ''; // limpia el campo
-}
-
 }
