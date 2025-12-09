@@ -9,6 +9,7 @@
     justify-content: center;
     padding: 20px;
     margin: auto; 
+    
 }
 /* Limitar el ancho de la tarjeta para escritorios/tabletas */
 .login-card-column {
@@ -98,3 +99,38 @@
     margin-bottom: 0; 
 }
 } 
+
+/* =======================================
+   FIX FINAL: Hacer clickeable "Regístrate aquí"
+   ======================================= */
+
+.login-card {
+  position: relative;
+  z-index: 1; /* Deja la tarjeta debajo del enlace */
+  overflow: visible !important;
+}
+
+/* El párrafo y el enlace se colocan por encima */
+.login-card-column > p {
+  position: relative;
+  z-index: 5;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* El enlace "Regístrate aquí" recupera clic y estilo */
+.login-card-column a[routerLink] {
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+/* Efecto visual al pasar el mouse */
+.login-card-column a[routerLink]:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}

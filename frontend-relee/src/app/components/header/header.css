@@ -4,6 +4,10 @@
   border-radius: 8px;
 }
 
+header, .navbar {
+  position: relative;
+  z-index: 5; /* más bajo que el contenido principal */
+}
 
 
 
@@ -88,4 +92,13 @@ a[routerLink] {
   cursor: pointer;
   position: relative;
   z-index: 10;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-pointer:hover {
+  text-decoration: underline;
+  color: #0056b3;
 }

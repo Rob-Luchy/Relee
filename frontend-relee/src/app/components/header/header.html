@@ -24,11 +24,26 @@
       <i class="bi bi-heart-fill"></i>
     </button>
 
-    <!-- Botón Iniciar sesión -->
-  <a href="/login" class="btn btn-outline-secondary d-flex align-items-center justify-content-center btn-custom">
+<!-- Botón Usuario / Iniciar sesión -->
+<a *ngIf="!nombreUsuario" href="/login"
+   class="btn btn-outline-secondary d-flex align-items-center justify-content-center btn-custom">
   <i class="bi bi-person-circle fs-5"></i>
   <span class="ms-2 d-none d-md-inline-block">Hola, inicia sesión</span>
 </a>
+
+<div *ngIf="nombreUsuario" class="d-flex align-items-center gap-2">
+  <!-- 👇 Hace clic y redirige al dashboard -->
+  <a (click)="irAlDashboard()" class="fw-semibold text-primary text-decoration-none cursor-pointer">
+    ¡Hola, {{ nombreUsuario }}!
+  </a>
+
+  <button class="btn btn-outline-danger btn-sm" (click)="cerrarSesion()">
+    <i class="bi bi-box-arrow-right"></i>
+    <span class="ms-1 d-none d-md-inline">Salir</span>
+  </button>
+</div>
+
+
 
 
     </div>
